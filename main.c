@@ -18,6 +18,9 @@
 	FUNC ( COL + 1, ROW - 1 ); \
 	FUNC ( COL - 1, ROW + 1 );
 
+#define IS_VALID_POS( COL, ROW ) \
+	(0 <= COL && 0 <= ROW && COL < COL_SIZE && ROW < ROW_SIZE)
+
 struct CellStatus {
 	/*	 -1: CELL_BOMB
 		  0: CELL_EMPTY
@@ -79,10 +82,7 @@ void drawCells() {
 }
 
 void safeBombAdd(col, row) {
-	if (col < 0) return;
-	if (row < 0) return;
-	if (COL_SIZE <= col) return;
-	if (ROW_SIZE <= row) return;
+	if (!IS_VALID_POS(col, row)) return;
 	if (board.cells[row][col].BombCount == CELL_BOMB) return;
 	++board.cells[row][col].BombCount;
 }
@@ -100,10 +100,7 @@ void setMines(divideBy) {
 }
 
 void recursiveOpen(col, row) {
-	if (col < 0) return;
-	if (row < 0) return;
-	if (COL_SIZE <= col) return;
-	if (ROW_SIZE <= row) return;
+	if (!IS_VALID_POS(col, row)) return;
 	if (board.cells[row][col].IsOpen) return;
 	if (board.cells[row][col].BombCount == CELL_BOMB) return;
 
