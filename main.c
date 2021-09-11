@@ -25,7 +25,7 @@ struct CellStatus {
 	/*	 -1: CELL_BOMB
 		  0: CELL_EMPTY
 		1-8: Bomb count */
-	char BombCount;
+	signed char BombCount;
 	char IsOpen;
 } typedef CellStatus_t;
 
