@@ -126,13 +126,12 @@ main() {
 	while (1) {
 		drawCells();
 
-		printf("COL: ");
-		col = a2i4input(getchar());
-		getchar(); /* NOTE: skip EOL */
-
-		printf("ROW: ");
-		row = a2i4input(getchar());
-		getchar(); /* NOTE: skip EOL */
+		do {
+			printf("COL ROW: ");
+			col = a2i4input(getchar());
+			row = a2i4input(getchar());
+			getchar(); /* NOTE: skip EOL */
+		} while (!IS_VALID_POS(col, row));
 
 		recursiveOpen(col, row);
 
